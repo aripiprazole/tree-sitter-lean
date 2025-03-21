@@ -11,7 +11,14 @@ module.exports = grammar({
   name: "lean",
 
   rules: {
-    // TODO: add the actual grammar rules
-    source_file: $ => "hello"
+    program: $ => repeat($.any_content),
+    
+    any_content: $ => choice(
+      $.any_character,
+      $._whitespace
+    ),
+    
+    any_character: $ => /./,
+    _whitespace: $ => /\s+/
   }
 });
